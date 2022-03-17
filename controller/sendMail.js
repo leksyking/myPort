@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer") 
+const nodemailerConfig = require('./nodemailerconfig')
 
 const sendMail = () => {
 const output = 
@@ -12,14 +13,7 @@ const output =
 <h3>Message</h3>
 <p>${req.body.message}</p>
 `
-let transport = nodemailer.createTransport({
-    host: process.env.SMIP_HOST,
-    port: 2525,
-    auth: {
-      user: process.env.SMIP_USER,
-      pass: process.env.SMIP_PASSWORD
-    }
-  });
+let transport = nodemailer.createTransport(nodemailerConfig);
 
 let mailOptions = {
 from: '"Nodemailer Contact" <process.env.EMAIL>',
