@@ -16,10 +16,10 @@ const sendMail = () => {
     let transport = nodemailer.createTransport(nodemailerConfig);
 
     let mailOptions = {
-        from: '"Nodemailer Contact" <process.env.EMAIL>',
+        //review this
+        from: '"" <process.env.EMAIL>',
         to: req.body.email,
         subject: req.body.subject,
-        text: 'Hey there, it’s our first message sent with Nodemailer ',
         html: output,
     };
 
