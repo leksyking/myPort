@@ -28,6 +28,7 @@ app.get("/contact", (req, res)=>{
 app.post("/contact", (req, res)=>{
 
   //send a message back to the user to show messag sent
+  //res.json('message sent')
     res.redirect("/contact")
 });
 
