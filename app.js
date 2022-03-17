@@ -12,9 +12,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
 
-const message = "Email has been sent!";
-//Date
+let message = "";
 
+//set Date to footer
 let today = new Date();
 
 let options = {
@@ -32,14 +32,14 @@ app.get("/about", (req, res)=>{
 });
 
 app.get("/contact", (req, res)=>{
-    res.render("contact",  {year: currentDay})
+    res.render("contact",  {year: currentDay, message})
 });
 
 app.post("/contact", async (req, res)=>{
-      await sendMail()
-      //send a message back to the user to show messag sent
-      //res.json('message sent')
-      res.redirect("/contact")
+     // await sendMail()
+
+    message = "Email has been sent!";
+    res.redirect("/contact")
 });
 
 const PORT = process.env.PORT || 3000;

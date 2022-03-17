@@ -23,7 +23,8 @@ const sendMail = () => {
         html: output,
     };
 
-    return transport.sendMail(mailOptions); 
+    return transport.sendMail(mailOptions);
+    console.log('Email Sent'); 
 }
 
 module.exports = sendMail;
