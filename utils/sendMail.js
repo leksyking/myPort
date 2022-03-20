@@ -1,30 +1,15 @@
 const nodemailer = require("nodemailer") 
 const nodemailerConfig = require('./nodemailerconfig')
 
-const sendMail = () => {
-    const output = 
-    `
-    <p>You have a new contact request </p>
-    <h3> Contact details </h3>
-    <ul>
-        <li>Name: ${req.body.fname}</li>
-        <li>Email: ${req.body.email}</li>
-    </ul>
-    <h3>Message</h3>
-    <p>${req.body.message}</p>
-    `
-    let transport = nodemailer.createTransport(nodemailerConfig);
-
+const sendMail = async ({from, subject, html}) => {
+    let transporter = nodemailer.createTransport(nodemailerConfig);
     let mailOptions = {
-        //review this
-        from: '"" <process.env.EMAIL>',
-        to: req.body.email,
-        subject: req.body.subject,
-        html: output,
+        from,
+        to:  "foogundipe@student.oauife.edu.ng",
+        subject,
+        html
     };
-
-    return transport.sendMail(mailOptions);
-    console.log('Email Sent'); 
+    return transporter.sendMail(mailOptions);
 }
 
 module.exports = sendMail;

@@ -2,7 +2,7 @@ require("dotenv").config()
 const express = require("express");
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
-const sendMail = require('./utils/sendMail');
+const sendContactMail = require('./utils/sendContactMail');
 
 
 const app = express();
@@ -12,11 +12,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
 
-let message = "";
+let sentMessage = "";
 
 //set Date to footer
 let today = new Date();
-
 let options = {
     year: "numeric"
 }
@@ -32,13 +31,13 @@ app.get("/about", (req, res)=>{
 });
 
 app.get("/contact", (req, res)=>{
-    res.render("contact",  {year: currentDay, message})
+    res.render("contact",  {year: currentDay, sentMessage})
 });
 
 app.post("/contact", async (req, res)=>{
-     // await sendMail()
-
-    message = "Email has been sent!";
+    const {fname, email, subject, message} = req.body;
+    await sendContactMail({fname, email, subject, message});
+    sentMessage = "Email has been sent!";
     res.redirect("/contact")
 });
 

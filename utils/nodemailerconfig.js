@@ -1,9 +1,13 @@
-module.eports = {
-    host:"smtp.ethereal.email" ,
-    port: 587,
-    secure: false, // true for 465, false for other ports
+let nodemailerConfig;
+if(process.env.NODE_ENV === 'production'){
+  nodemailerConfig = {
+    host:"smtp.gmail.com" ,
+    port: 465,
+    secure: true, // true for 465, false for other ports
     auth: {
-      user: process.env.SMIP_USERNAME,
-      pass: process.env.SMIP_PASSWORD
+      user: process.env.SMTP_USERNAME,
+      pass: process.env.SMTP_PASSWORD
     }
 }
+}
+module.exports = nodemailerConfig
