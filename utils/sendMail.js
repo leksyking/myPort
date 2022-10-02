@@ -5,7 +5,7 @@ const sendMail = async ({from, subject, html}) => {
     let transporter = nodemailer.createTransport(nodemailerConfig);
     let mailOptions = {
         from,
-        to:  "foogundipe@student.oauife.edu.ng",
+        to:  "gbemilekeogundipe@gmail.com",
         subject,
         html
     };
