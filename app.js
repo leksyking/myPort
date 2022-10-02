@@ -16,11 +16,7 @@ let sentMessage = "";
 
 //set Date to footer
 let today = new Date();
-let options = {
-    year: "numeric"
-}
-let currentDay = today.toLocaleDateString('en-US', options) 
-
+let currentDay = today.getFullYear();
 
 app.get("/", (req, res)=>{
     res.render("home", {year: currentDay})
